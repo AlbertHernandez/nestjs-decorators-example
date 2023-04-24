@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LogResponse } from '../decorators/log-response.decorator';
+import { HandleError } from '../decorators/handle-error.decorator';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +16,9 @@ export class UsersService {
   }
 
   @LogResponse()
+  @HandleError()
   async findOne(id: number) {
+    throw new Error('Custom error!');
     return `This action returns a #${id} user`;
   }
 
